@@ -8,12 +8,24 @@ eventEmitter.on('start', (num) => {
 });
 
 http.createServer((req, res) => {
-    fs.readFile('index.html', 'utf8', (err, data) => {
+    let path = '';
+    if (req.url === '/'){
+        path = 'index.html';
+    } else if (req.url === '/contact-me'){
+        path = 'contact-info.html'
+    } else if (req.url === '/about'){
+        path = 'about.html';
+    } else {
+        path = '404.html';
+    }
+
+    fs.readFile(path, 'utf8', (err, data) => {
         if (err){
             res.end('Error: ', err);
         }
         res.writeHead(200, {'Content-Type': 'text/html'});
-        res.end(data)
+        res.write(data);
+        res.end();
     });
 }).listen(8080);
 
