@@ -12,7 +12,7 @@ http.createServer((req, res) => {
     if (req.url === '/'){
         path = 'index.html';
     } else if (req.url === '/contact-me'){
-        path = 'contact-info.html'
+        path = 'contact-me.html'
     } else if (req.url === '/about'){
         path = 'about.html';
     } else {
